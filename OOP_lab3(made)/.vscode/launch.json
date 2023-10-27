@@ -6,7 +6,8 @@
             "name": "Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/${workspaceFolderBasename}.exe"
+            "program": "${workspaceFolder}/program.exe"
+            // "program": "${workspaceFolder}/${workspaceFolderBasename}.exe"
             // "program": "${fileWorkspaceFolder}/${workspaceFolderBasename}.exe"
              , 
             "cwd": "${workspaceRoot}",

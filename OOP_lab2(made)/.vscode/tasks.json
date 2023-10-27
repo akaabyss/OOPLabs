@@ -19,7 +19,8 @@
                 "-g",
                 "*.cpp",
                 "-o",
-                "${workspaceFolder}/${fileDirnameBasename}.exe"
+                "${workspaceFolder}/program.exe"
+                // "${workspaceFolder}/${fileDirnameBasename}.exe"
                 // "${fileWorkspaceFolder}/${workspaceFolderBasename}.exe"
             ],
             "options": {

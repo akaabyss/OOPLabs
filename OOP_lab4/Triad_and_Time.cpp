@@ -31,91 +31,108 @@ void Triad::setC(short _C)
     c = _C;
 }
 
-short Triad::getA()
+short Triad::getA() const
 {
     return a;
 }
-short Triad::getB()
+short Triad::getB() const
 {
     return b;
 }
-short Triad::getC()
+short Triad::getC() const
 {
     return c;
 }
 
-
-void Time ::plusHour(const short &_hours)
+void Time ::plusHour(const short &_delta)
 {
-    a += _hours;
+    hours += _delta;
 }
-void Time ::plusMin(const short &_minutes)
+void Time ::plusMin(const short &_delta)
 {
-    b += _minutes;
-    if (b >= 60)
+    minutes += _delta;
+    if (minutes >= 60)
     {
-        b -= 60;
-        a += 1;
+        minutes -= 60;
+        hours += 1;
     }
 }
-void Time ::plusSec(const short &_seconds)
+void Time ::plusSec(const short &_delta)
 {
-    c += _seconds;
-    if (c >= 60)
+    seconds += _delta;
+    if (seconds >= 60)
     {
-        c -= 60;
-        b += 1;
-        if (b >= 60)
+        seconds -= 60;
+        minutes += 1;
+        if (minutes >= 60)
         {
-            b -= 60;
-            a += 1;
+            minutes -= 60;
+            hours += 1;
         }
     }
 }
-
-// void Time::plusTime(short _minutes, short _seconds)
-// {
-//     b += _minutes;
-//     c += _seconds;
-// }
-
 void Time::setHour(short _h)
 {
-    a = _h;
+    hours = _h;
 }
 void Time::setMin(short _m)
 {
-    b = _m;
-    if (b >= 60)
-    {
-        b -= 60;
-        a += 1;
-    }
-}
-void Time::setSec(short _s)
-{
-    c = _s;
-    if (c >= 60)
-    {
-        c -= 60;
-        b += 1;
-        if (b >= 60)
-        {
-            b -= 60;
-            a += 1;
-        }
-    }
+    minutes = _m;
+    normalize();
 }
 
-short Time::getHour()
+void Time::setSec(short _s)
 {
-    return a;
+    seconds = _s;
+    normalize();
 }
-short Time::getMin()
+void Time::normalize()
 {
-    return b;
+    if (seconds >= 60)
+    {
+        seconds -= 60;
+        minutes += 1;
+    }
+    if (minutes >= 60)
+    {
+        minutes -= 60;
+        hours += 1;
+    }
 }
-short Time::getSec()
+short Time::getHour() const
 {
-    return c;
+    return hours;
+}
+short Time::getMin() const
+{
+    return minutes;
+}
+short Time::getSec() const
+{
+    return seconds;
+}
+ostream &operator<<(ostream &stream, const Triad &object)
+{
+    stream << object.a << " "
+           << object.b << " "
+           << object.c << " ";
+    return stream;
+}
+istream &operator>>(istream &stream, Triad &object)
+{
+    stream >> object.a >> object.b >> object.c;
+    return stream;
+}
+ostream &operator<<(ostream &stream, const Time &object)
+{
+    stream << object.hours << " "
+           << object.minutes << " "
+           << object.seconds << " ";
+    return stream;
+}
+istream &operator>>(istream &stream, Time &object)
+{
+    stream >> object.hours >> object.minutes >> object.seconds;
+    object.normalize();
+    return stream;
 }

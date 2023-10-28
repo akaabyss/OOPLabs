@@ -12,18 +12,22 @@ public:
     void setB(short _B);
     void setC(short _C);
 
-    short getA();
-    short getB();
-    short getC();
+    short getA() const;
+    short getB() const;
+    short getC() const;
 
     void plusA(short _delta = 1);
     void plusB(short _delta = 1);
     void plusC(short _delta = 1);
+    friend ostream &operator<<(ostream &stream, const Triad &object);
+    friend istream &operator>>(istream &stream, Triad &object);
 };
 
 class Time : Triad
 {
-
+#define hours a 
+#define minutes b 
+#define seconds c
 public:
     Time(short _hours = 0, short _minutes = 0, short _seconds = 0) : Triad(_hours, _minutes, _seconds) {}
 
@@ -31,12 +35,16 @@ public:
     void setMin(short _m);
     void setSec(short _h);
 
-    short getHour();
-    short getMin();
-    short getSec();
+    short getHour() const;
+    short getMin() const;
+    short getSec() const;
 
-    void plusHour(const short &_hours = 1);
-    void plusMin(const short &_minutes = 1);
-    void plusSec(const short &_seconds = 1);
-    // void plusTime(short _minutes = 0, short _seconds = 0);
+    void normalize();
+
+    void plusHour(const short &_delta = 1);
+    void plusMin(const short &_delta = 1);
+    void plusSec(const short &_delta = 1);
+
+    friend ostream &operator<<(ostream &stream, const Time &object);
+    friend istream &operator>>(istream &stream, Time &object);
 };

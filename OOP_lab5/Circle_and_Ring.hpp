@@ -10,23 +10,14 @@ protected:
     float r;
 
 public:
-    Circle(const float &_r = 0)
-    {
-        r = _r;
-    }
-    virtual float Square() const
-    {
-        return PI * r * r;
-    }
-    virtual void increase(const float &_delta)
-    {
-        r *= _delta;
-    }
-    friend ostream &operator<<(ostream &stream, const Circle &object)
-    {
-        stream << "R = " + to_string(object.r) + ", Square = " + to_string(object.Square()) + "\n\n";
-        return stream;
-    }
+    Circle(const float &_r = 1);
+
+    float Square() const;
+
+    void increase(const float &_delta);
+
+    friend ostream &operator<<(ostream &stream, const Circle &object);
+    friend istream &operator>>(istream &stream, Circle &object);
 };
 
 class Ring : Circle
@@ -34,22 +25,12 @@ class Ring : Circle
     float rin;
 
 public:
-    Ring(const float &_r, const float &_rin) : Circle(_r)
-    {
-        rin = _rin;
-    }
-    float Square() const 
-    {
-        return PI * (r * r - rin * rin);
-    }
-    void increase(const float &_delta)
-    {
-        r *= _delta;
-        rin *= _delta;
-    }
-    friend ostream &operator<<(ostream &stream, const Ring &object)
-    {
-        stream << "R = " + to_string(object.r) + ", r = " + to_string(object.rin) + ", Square = " + to_string(object.Square()) + "\n\n";
-        return stream;
-    }
+    // Внешний, потом внутренний
+    Ring(const float &_r, const float &_rin);
+
+    float Square() const;
+    void increase(const float &_delta = 1);
+
+    friend ostream &operator<<(ostream &stream, const Ring &object);
+    friend istream &operator>>(istream &stream, Ring &object);
 };

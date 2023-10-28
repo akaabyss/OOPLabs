@@ -19,6 +19,7 @@ public:
     void plusA(short _delta = 1);
     void plusB(short _delta = 1);
     void plusC(short _delta = 1);
+    
     friend ostream &operator<<(ostream &stream, const Triad &object);
     friend istream &operator>>(istream &stream, Triad &object);
 };

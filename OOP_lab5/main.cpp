@@ -4,7 +4,7 @@ int main()
 {
     float delta = 1.5;
     Circle circle(5);
-    Ring ring(5, 3);
+    Ring ring(5, 3); //внешний, внутренний
     cout << circle;
     cout << ring;
 

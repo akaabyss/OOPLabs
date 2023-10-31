@@ -4,10 +4,14 @@ Circle::Circle(const float &_r)
 {
     r = _r;
 }
-float Circle::Square() const
+Circle::Circle(const Circle &object)
 {
-    return PI * r * r;
+    r = object.r;
 }
+// float Circle::Square() const
+// {
+//     return PI * r * r;
+// }
 void Circle::increase(const float &_delta)
 {
     r *= _delta;
@@ -22,7 +26,11 @@ istream &operator>>(istream &stream, Circle &object)
     stream >> object.r;
     return stream;
 }
-
+// Circle &Circle::operator+(const float &delta)
+// {
+//     r += delta;
+//     return *this;
+// }
 Ring ::Ring(const float &_r, const float &_rin) : Circle(_r)
 {
     rin = _rin;

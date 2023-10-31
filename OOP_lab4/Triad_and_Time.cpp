@@ -6,17 +6,20 @@ Triad::Triad(short _a, short _b, short _c)
     b = _b;
     c = _c;
 }
-void Triad::plusA(short _delta)
+Triad Triad::plusA(const short &_delta)
 {
     a += _delta;
+    return *this;
 }
-void Triad::plusB(short _delta)
+Triad Triad::plusB(const short &_delta)
 {
     b += _delta;
+    return *this;
 }
-void Triad::plusC(short _delta)
+Triad Triad::plusC(const short &_delta)
 {
     c += _delta;
+    return *this;
 }
 void Triad::setA(short _A)
 {
@@ -43,47 +46,45 @@ short Triad::getC() const
 {
     return c;
 }
-
-void Time ::plusHour(const short &_delta)
+// здесь должна вызываться plus от базового класса
+Time Time ::plusHour(const short &_delta)
 {
     hours += _delta;
+    Triad p = plusA(_delta);
+    Time time = Time(p.getA(), p.getB(), p.getC());
+    time.normalize();
+    return time;
 }
-void Time ::plusMin(const short &_delta)
+Time Time ::plusMin(const short &_delta)
 {
     minutes += _delta;
-    if (minutes >= 60)
-    {
-        minutes -= 60;
-        hours += 1;
-    }
+    Triad p = plusB(_delta);
+    Time time = Time(p.getA(), p.getB(), p.getC());
+    time.normalize();
+    return time;
 }
-void Time ::plusSec(const short &_delta)
+// Time* plusSec везде
+Time Time ::plusSec(const short &_delta)
 {
     seconds += _delta;
-    if (seconds >= 60)
-    {
-        seconds -= 60;
-        minutes += 1;
-        if (minutes >= 60)
-        {
-            minutes -= 60;
-            hours += 1;
-        }
-    }
+    Triad p = plusC(_delta);
+    Time time = Time(p.getA(), p.getB(), p.getC());
+    time.normalize();
+    return time;
 }
 void Time::setHour(short _h)
 {
-    hours = _h;
+    setA(_h);
 }
 void Time::setMin(short _m)
 {
-    minutes = _m;
+    setB(_m);
     normalize();
 }
 
 void Time::setSec(short _s)
 {
-    seconds = _s;
+    setC(_s);
     normalize();
 }
 void Time::normalize()

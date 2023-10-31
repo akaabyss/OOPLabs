@@ -16,9 +16,9 @@ public:
     short getB() const;
     short getC() const;
 
-    void plusA(short _delta = 1);
-    void plusB(short _delta = 1);
-    void plusC(short _delta = 1);
+    Triad plusA(const short& _delta = 1);
+    Triad plusB(const short& _delta = 1);
+    Triad plusC(const short& _delta = 1);
     
     friend ostream &operator<<(ostream &stream, const Triad &object);
     friend istream &operator>>(istream &stream, Triad &object);
@@ -42,9 +42,9 @@ public:
 
     void normalize();
 
-    void plusHour(const short &_delta = 1);
-    void plusMin(const short &_delta = 1);
-    void plusSec(const short &_delta = 1);
+    Time plusHour(const short &_delta = 1);
+    Time plusMin(const short &_delta = 1);
+    Time plusSec(const short &_delta = 1);
 
     friend ostream &operator<<(ostream &stream, const Time &object);
     friend istream &operator>>(istream &stream, Time &object);

@@ -16,18 +16,18 @@ public:
     short getB() const;
     short getC() const;
 
-    Triad plusA(const short& _delta = 1);
-    Triad plusB(const short& _delta = 1);
-    Triad plusC(const short& _delta = 1);
-    
+    Triad plusA(const short &_delta = 1);
+    Triad plusB(const short &_delta = 1);
+    Triad plusC(const short &_delta = 1);
+
     friend ostream &operator<<(ostream &stream, const Triad &object);
     friend istream &operator>>(istream &stream, Triad &object);
 };
 
 class Time : Triad
 {
-#define hours a 
-#define minutes b 
+#define hours a
+#define minutes b
 #define seconds c
 public:
     Time(short _hours = 0, short _minutes = 0, short _seconds = 0) : Triad(_hours, _minutes, _seconds) {}
@@ -42,9 +42,9 @@ public:
 
     void normalize();
 
-    Time plusHour(const short &_delta = 1);
-    Time plusMin(const short &_delta = 1);
-    Time plusSec(const short &_delta = 1);
+    Time plusA(const short &_delta = 1);
+    Time plusB(const short &_delta = 1);
+    Time plusC(const short &_delta = 1);
 
     friend ostream &operator<<(ostream &stream, const Time &object);
     friend istream &operator>>(istream &stream, Time &object);

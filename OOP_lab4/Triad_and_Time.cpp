@@ -54,14 +54,14 @@ Time Time ::plusA(const short &_delta)
     p.normalize();
     return p;
 }
-Time Time ::plusB(const short &_delta = 1)
+Time Time ::plusB(const short &_delta)
 {
     Triad q = Triad::plusB(_delta);
     Time p = (q.getA(), q.getB(), q.getC());
     p.normalize();
     return p;
 }
-Time Time ::plusC(const short &_delta = 1)
+Time Time ::plusC(const short &_delta)
 {
    Triad q = Triad::plusC(_delta);
     Time p = (q.getA(), q.getB(), q.getC());

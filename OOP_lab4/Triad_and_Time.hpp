@@ -32,13 +32,11 @@ class Time : Triad
 public:
     Time(short _hours = 0, short _minutes = 0, short _seconds = 0) : Triad(_hours, _minutes, _seconds) {}
 
-    void setHour(short _s);
-    void setMin(short _m);
-    void setSec(short _h);
+    void setA(short _h);
+    void setB(short _m);
+    void setC(short _s);
 
-    short getHour() const;
-    short getMin() const;
-    short getSec() const;
+    
 
     void normalize();
 

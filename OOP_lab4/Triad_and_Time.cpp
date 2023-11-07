@@ -69,18 +69,18 @@ Time Time ::plusC(const short &_delta)
     return p;
 }
 
-void Time::setHour(short _h)
+void Time::setA(short _h)
 {
-    setA(_h);
+    Triad::setA(_h);
 }
-void Time::setMin(short _m)
+void Time::setB(short _m)
 {
-    setB(_m);
+    Triad::setB(_m);
     normalize();
 }
-void Time::setSec(short _s)
+void Time::setC(short _s)
 {
-    setC(_s);
+    Triad::setC(_s);
     normalize();
 }
 void Time::normalize()
@@ -96,18 +96,7 @@ void Time::normalize()
         hours += 1;
     }
 }
-short Time::getHour() const
-{
-    return hours;
-}
-short Time::getMin() const
-{
-    return minutes;
-}
-short Time::getSec() const
-{
-    return seconds;
-}
+
 ostream &operator<<(ostream &stream, const Triad &object)
 {
     stream << object.a << " "

@@ -1,25 +1,27 @@
-#include "Circle_and_Ring.hpp"
-// ввод: внешний, внутренний
+#include "PointCircleRing.hpp"
+
 int main()
 {
-    float delta = 1.5;
+    Point x(5);
 
-    Circle circle(5);
-    Ring ring(5, 3);
-    cout << ring
-         << '\n'
-         << circle;
+    Point *y = &x;
 
-    ring.increase(delta);
-    circle.increase(delta);
+    cout << *y;
 
-    cout << "\n\n"
-         << ring
-         << '\n'
-         << circle;
+    Circle z(5);
+
+    Point *d = &z;
+
+    cout << "\n"
+         << *d;
+
+    Ring f(5, 4);
+
+    Circle *s = &f;
+
+    cout << "\n"
+         << f;
 
     system("pause");
+    return 0;
 }
-
-// Окружность абстрактным, наследник еще один - Круг (с площадью)
-// circle* x = ring\

@@ -2,26 +2,14 @@
 
 int main()
 {
-    Point x(5);
 
-    Point *y = &x;
+     Circumference *p = new Ring(5, 4);
+     cout << p->area() << '\n';
+     //Circle *s = dynamic_cast<Circle *>(p);
+    Circumference *s = new Circle(5);
+     cout << "\n"
+          << s->area();
 
-    cout << *y;
-
-    Circle z(5);
-
-    Point *d = &z;
-
-    cout << "\n"
-         << *d;
-
-    Ring f(5, 4);
-
-    Circle *s = &f;
-
-    cout << "\n"
-         << f;
-
-    system("pause");
-    return 0;
+     system("pause");
+     return 0;
 }

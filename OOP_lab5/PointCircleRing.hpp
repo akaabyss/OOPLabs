@@ -1,9 +1,3 @@
-// #include <iostream>
-// #include <cmath>
-// #include <string>
-// const float PI = acos(-1);
-// using namespace std;
-
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -11,74 +5,71 @@ using namespace std;
 
 const float PI = acos(-1);
 
-class Point
+class Circumference
 {
 protected:
     float r;
 
 public:
-    Point(float _r) : r(_r) {}
+    Circumference(float _r) : r(_r) {}
+
+    virtual float area() = 0;
 
     virtual void increase(float _delta)
     {
         r *= _delta;
     }
-    virtual Point &operator*(float _delta)
+
+    virtual Circumference *operator*(float _delta)
     {
         r *= _delta;
-        return *this;
+        return this;
     }
-    friend ostream &operator<<(ostream &stream, const Point &object)
+
+    friend ostream &operator<<(ostream &stream, const Circumference &object)
     {
         stream << "R =" << object.r;
         return stream;
     }
-    friend istream &operator>>(istream &stream, Point &object)
+
+    friend istream &operator>>(istream &stream, Circumference &object)
     {
         stream >> object.r;
         return stream;
     }
+
     float get_r()
     {
         return r;
     }
-    Point operator=(const Point &object)
-    {
-        return Point(object.r);
-    }
 };
 
-class Circle : public Point
+class Circle : public Circumference
 {
 public:
-    Circle(float r) : Point(r) {}
+    Circle(float r) : Circumference(r) {}
 
-    virtual float area()
+    virtual float area() override
     {
         return PI * r * r;
     }
 
     virtual void increase(float _delta) override
     {
-        Point::increase(_delta);
+        Circumference::increase(_delta);
     }
 
-    virtual Circle &operator*(float _delta) override
+    virtual Circle *operator*(float _delta) override
     {
-        Point x = Point::operator*(_delta);
-        r = x.get_r();
-        return *this;
+        Circumference *x = Circumference::operator*(_delta);
+        r = x->get_r();
+        return this;
     }
 
     Circle operator=(const Circle &object)
     {
         return Circle(object.r);
     }
-    // friend ostream &operator<<(ostream &stream, const Circle &object)
-    // {
-    //     stream << "R = " << object.r;
-    //     return stream;
-    // }
 };
 
 class Ring : public Circle
@@ -91,7 +82,7 @@ public:
 
     virtual float area() override
     {
-        return Circle::area() - 3.14159 * rin * rin;
+        return Circle::area() - PI * rin * rin;
     }
 
     virtual void increase(float _delta) override
@@ -99,12 +90,13 @@ public:
         Circle::increase(_delta);
         rin *= _delta;
     }
-    virtual Ring &operator*(float _delta) override
+
+    virtual Ring *operator*(float _delta) override
     {
-        Circle x = Circle::operator*(_delta);
-        r = x.get_r();
+        Circle *x = Circle::operator*(_delta);
+        r = x->get_r();
         rin *= _delta;
-        return *this;
+        return this;
     }
 
     friend ostream &operator<<(ostream &stream, const Ring &object)
